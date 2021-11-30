@@ -6,6 +6,8 @@ import sys
 from ping3 import ping
 import socket
 from time import gmtime, strftime
+from random import randint
+from time import sleep
 
 def pingScan(event):
         #check start host <= end host
@@ -32,6 +34,9 @@ def pingScan(event):
         #for each of the IP addresses, attempt an PING
         for ipAddress in ipRange:
                 try:
+                        #wait a random number of seconds, between 1 and 5, between each ping in the network range
+                        if stealthMode.GetValue() == True:
+                            sleep(randint(0,5))
                         #report the IP address to the window status bar
                         mainWin.StatusBar.SetStatusText('Pinging IP: '+ ipAddress)
                         #perform the ping
@@ -77,6 +82,8 @@ mainWin = wx.Frame(None, title="Simple Ping (ICMP) Sweeper 1.0", size =(1000,600
 panelAction = wx.Panel(mainWin)
 
 #define action buttons
+stealthMode = wx.CheckBox(panelAction, -1, 'Stealth Mode', (10, 10))
+stealthMode.SetValue(False)
 
 #scan button
 scanButton = wx.Button(panelAction, label='Scan')
@@ -122,6 +129,9 @@ HostEndLabel = wx.StaticText(panelAction, label="Host End: ")
 actionBox = wx.BoxSizer()
 actionBox.Add(scanButton, proportion=1, flag=wx.LEFT, border=5)
 actionBox.Add(exitButton, proportion=0, flag=wx.LEFT, border=5)
+
+
+actionBox.Add(stealthMode, proportion=0,  flag=wx.LEFT|wx.CENTER,  border=5)
 
 actionBox.Add(ipLabel, proportion=0, flag=wx.LEFT, border=5)
 
