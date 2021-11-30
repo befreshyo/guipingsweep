@@ -77,9 +77,6 @@ panelAction = wx.Panel(mainWin)
 displayAll = wx.CheckBox(panelAction, -1, 'Display All', (10, 10))
 displayAll.SetValue(True)
 
-stealthMode = wx.CheckBox(panelAction, -1, 'Stealth Mode', (10, 10))
-stealthMode.SetValue(True)
-
 #scan button
 scanButton = wx.Button(panelAction, label='Scan')
 scanButton.Bind(wx.EVT_BUTTON, portScan)
@@ -128,7 +125,6 @@ PortEndLabel = wx.StaticText(panelAction, label="Port  End: ")
 actionBox = wx.BoxSizer()
 
 actionBox.Add(displayAll, proportion=0,  flag=wx.LEFT|wx.CENTER,  border=5)
-actionBox.Add(stealthMode, proportion=0,  flag=wx.LEFT|wx.CENTER,  border=5)
 actionBox.Add(scanButton, proportion=0,  flag=wx.LEFT,  border=5)
 actionBox.Add(exitButton, proportion=0,  flag=wx.LEFT,  border=5)
 
